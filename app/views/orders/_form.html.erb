@@ -1,0 +1,69 @@
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :transaction_id %><br>
+    <%= f.text_field :transaction_id %>
+  </div>
+  <div class="field">
+    <%= f.label :paypal_id %><br>
+    <%= f.text_field :paypal_id %>
+  </div>
+  <div class="field">
+    <%= f.label :paypal_email %><br>
+    <%= f.text_field :paypal_email %>
+  </div>
+  <div class="field">
+    <%= f.label :date_received %><br>
+    <%= f.datetime_select :date_received %>
+  </div>
+  <div class="field">
+    <%= f.label :shipping_name %><br>
+    <%= f.text_field :shipping_name %>
+  </div>
+  <div class="field">
+    <%= f.label :shipping_address1 %><br>
+    <%= f.text_field :shipping_address1 %>
+  </div>
+  <div class="field">
+    <%= f.label :shipping_address2 %><br>
+    <%= f.text_field :shipping_address2 %>
+  </div>
+  <div class="field">
+    <%= f.label :shipping_address3 %><br>
+    <%= f.text_field :shipping_address3 %>
+  </div>
+  <div class="field">
+    <%= f.label :shipping_address4 %><br>
+    <%= f.text_field :shipping_address4 %>
+  </div>
+  <div class="field">
+    <%= f.label :payment_total %><br>
+    <%= f.text_field :payment_total %>
+  </div>
+  <div class="field">
+    <%= f.label :payment_subtotal %><br>
+    <%= f.text_field :payment_subtotal %>
+  </div>
+  <div class="field">
+    <%= f.label :shipping_total %><br>
+    <%= f.text_field :shipping_total %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

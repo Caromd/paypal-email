@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Orders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Transaction</th>
+      <th>Paypal</th>
+      <th>Paypal email</th>
+      <th>Date received</th>
+      <th>Shipping name</th>
+      <th>Shipping address1</th>
+      <th>Shipping address2</th>
+      <th>Shipping address3</th>
+      <th>Shipping address4</th>
+      <th>Payment total</th>
+      <th>Payment subtotal</th>
+      <th>Shipping total</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.transaction_id %></td>
+        <td><%= order.paypal_id %></td>
+        <td><%= order.paypal_email %></td>
+        <td><%= order.date_received %></td>
+        <td><%= order.shipping_name %></td>
+        <td><%= order.shipping_address1 %></td>
+        <td><%= order.shipping_address2 %></td>
+        <td><%= order.shipping_address3 %></td>
+        <td><%= order.shipping_address4 %></td>
+        <td><%= order.payment_total %></td>
+        <td><%= order.payment_subtotal %></td>
+        <td><%= order.shipping_total %></td>
+        <td><%= order.user %></td>
+        <td><%= link_to 'Show', order %></td>
+        <td><%= link_to 'Edit', edit_order_path(order) %></td>
+        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Order', new_order_path %>

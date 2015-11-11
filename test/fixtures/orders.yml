@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  transaction_id: MyString
+  paypal_id: MyString
+  paypal_email: MyString
+  date_received: 2015-11-11 08:42:21
+  shipping_name: MyString
+  shipping_address1: MyString
+  shipping_address2: MyString
+  shipping_address3: MyString
+  shipping_address4: MyString
+  payment_total: 9.99
+  payment_subtotal: 9.99
+  shipping_total: 9.99
+  user_id: 
+
+two:
+  transaction_id: MyString
+  paypal_id: MyString
+  paypal_email: MyString
+  date_received: 2015-11-11 08:42:21
+  shipping_name: MyString
+  shipping_address1: MyString
+  shipping_address2: MyString
+  shipping_address3: MyString
+  shipping_address4: MyString
+  payment_total: 9.99
+  payment_subtotal: 9.99
+  shipping_total: 9.99
+  user_id: 
