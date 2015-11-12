@@ -1,10 +1,28 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = current_user.orders.all
+  end
+
+  def paypal
+    @order = current_user.orders.build
+#    params[:transaction_id] = '1'
+#    params[:paypal_id] = '1'
+#    params[:paypal_email] = 'a@a'
+#    params[:date_received] = Time.now
+#    params[:shipping_name] = 'Name'
+#    params[:shipping_address1] = "Add1"
+#    params[:shipping_address2] = "Add2"
+#    params[:shipping_address3] = "Add3"
+#    params[:shipping_address4] = "Add4"
+#    params[:payment_total] = 21.50
+#    params[:payment_subtotal] = 18.50
+#    params[:shipping_total] = 3.00
+#    create
   end
 
   # GET /orders/1
@@ -14,7 +32,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @order = Order.new
+    @order = current_user.orders.build
   end
 
   # GET /orders/1/edit

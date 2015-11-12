@@ -1,0 +1,291 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+$white_opaque: rgba(250, 250, 250, .3);
+$white_opaque_text: rgba(250, 250, 250, .6);
+$dark: #1F7972;
+$grey_opaque: rgba(192,192,192,0.6);
+
+/* header */
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 2em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 3px;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+#logo:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+* {
+	box-sizing: border-box;
+}
+html {
+  height: 100%;
+}
+
+body {
+	height: 100%;
+	background-image: url(Groceries.png);
+  	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  	padding-top: 60px;
+ 	@media only screen and (max-width: 767px) {font-size: 0.75em; background-image: none;}
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+h1 {font-size: 3em;}
+
+.alert {
+	text-align: center;
+}
+
+.container {
+	width: 50%;
+	max-width: 500px;
+	background: white;
+	opacity: 0.8;
+	margin: 3em auto 0 auto;
+	border-radius: 7px;
+	-webkit-box-shadow: 0 0 4px 3px rgba(0,0,0,.3);
+	box-shadow: 0 0 4px 4px rgba(0,0,0,.03);
+	padding: 1em 0;
+}
+
+.page_title {
+	text-align: center;
+	font-weight: 700;
+	font-size: 2.5em;
+	text-transform: uppercase;
+	color: $dark;
+	margin: 0;
+	a {
+		text-decoration: none;
+		color: white;
+		transition: all .4s ease-in-out;
+		&:hover {
+			opacity: 0.4;
+		}
+	}
+}
+
+#index_wrapper {
+	.row {
+		width: 100%;
+		padding-left: 50px;
+		.index_item {width: 90%;float: left;
+			i {width: 100px};
+			a {width: 100px; text-align: right;}
+		}
+		.trash {width: 10%;	float: left;
+			.p {
+			    text-align: center;
+			    border-left: 1px solid;
+			    padding: 1em 0;}}
+		i {
+			transition: all .4s ease-in-out;
+			&:hover {color: $dark;}
+		}
+	}
+}
+
+.links {
+	display: block;
+	margin: 1.5em auto 0 auto;
+	text-align: center;
+	font-size: 0.8em;
+	color: white;
+	a {
+		color: white;
+	}
+}
+
+.forms {padding: 0 5%;}
+label {color: $dark;}
+
+#form {padding-left: 10px};
+#summary-form {padding-left: 70px};
+
+input[type="text"], textarea {
+	width: 90%;
+	margin: 0.5em 2% .5em 20px;
+	display: inline-block;
+	outline: none;
+	background: $grey_opaque;
+	border: none;
+	height: 40px;
+	border-radius: 4px;
+	padding-left: 1em;
+}
+
+input[type="email"] {
+	width: 90%;
+	margin: 0.5em 2% .5em 20px;
+	display: inline-block;
+	outline: none;
+	background: $grey_opaque;
+	border: none;
+	height: 40px;
+	border-radius: 4px;
+	padding-left: 1em;
+}
+
+input[type="password"] {
+	width: 90%;
+	margin: 0.5em 2% .5em 20px;
+	display: inline-block;
+	outline: none;
+	background: $grey_opaque;
+	border: none;
+	height: 40px;
+	border-radius: 4px;
+	padding-left: 1em;
+}
+
+input[type="number"] {
+	width: 90%;
+	margin: 0.5em 2% .5em 20px;
+	display: inline-block;
+	outline: none;
+	background: $grey_opaque;
+	border: none;
+	height: 40px;
+	border-radius: 4px;
+	padding-left: 1em;
+}
+
+input[type="checkbox"] {
+	margin: 0.5em 2% .5em 20px;
+	border-radius: 4px;
+	padding-left: 1em;
+}
+
+input#year {width: 20%; margin-left: 0;}
+input#month {width: 12%}
+
+#item_type_id, #price_item_id {
+	width: 90%;
+	margin: .5em 2% .5em 20px;
+	outline: none;
+	background: $grey_opaque;
+	border: none;
+	height: 40px;
+	border-radius: 4px;
+	padding-left: 1em;
+}
+
+label {
+	margin: .5em 2% .5em 20px;
+	border-radius: 4px;
+	padding-left: 1em;
+}
+
+#price_date_bought_1i {
+	width: 30%;
+	margin: .5em 2% .5em 20px;
+	outline: none;
+	background: $grey_opaque;
+	border: none;
+	height: 40px;
+	border-radius: 2px;
+	padding-left: 1em;
+}
+
+#price_date_bought_2i {
+	width: 30%;
+	margin: .5em 2% .5em 0;
+	outline: none;
+	background: $grey_opaque;
+	border: none;
+	height: 40px;
+	border-radius: 2px;
+	padding-left: 1em;
+}
+
+#price_date_bought_3i {
+	width: 20%;
+	margin: .5em 2% .5em 0;
+	outline: none;
+	background: $grey_opaque;
+	border: none;
+	height: 40px;
+	border-radius: 2px;
+	padding-left: 1em;
+}
+
+#summary_wrapper1 {
+	.summary_row {width: 100%;padding-left: 50px; padding-right: 50px;
+		.summary_item {	width: 50%;	float: left;display:inline;}
+		.summary_amount {width: 50%; text-align: right; float: right; display:inline;}
+	}
+}
+
+#summary_wrapper2 {
+	.summary_row {width: 100%;padding-left: 50px; padding-right: 50px;font-weight: bold;
+		.summary_item {	width: 50%;	float: left;background-color:$grey_opaque;border-style: solid; border-width: 0 0 1px 0; border-color: white;}
+		.summary_amount {width: 50%; text-align: right; float: right;background-color:$grey_opaque;border-style: solid; border-width: 0 0 1px 0; border-color: white;}
+	}
+}
+
+#prices_amount {text-align: right};
+
+#back {margin: 0 0 0 30px;}
+
+textarea {height: 200px;}
+
+input[type="submit"] {
+	background: $dark;
+	outline: none;
+	border: none;
+	height: 40px;
+	border-radius: 4px;
+	width: 25%;
+	display: inline-block;
+	transition: all .4s ease-in-out;
+	cursor: pointer;
+	color: white;
+	margin: .5em 2% 1em 20px;
+	&:hover {
+		background: $dark;
+		color: white;
+	}
+}
+::-webkit-input-placeholder { color: $dark; }
+
+.navbar-right {width: 600px}; 
+ 
+textarea {
+	width: 90%;
+    height: 500px;}

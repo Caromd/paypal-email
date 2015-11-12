@@ -4,7 +4,7 @@ class OrderItemsController < ApplicationController
   # GET /order_items
   # GET /order_items.json
   def index
-    @order_items = OrderItem.all
+    @order_items = @OrderItem.all
   end
 
   # GET /order_items/1
@@ -14,7 +14,7 @@ class OrderItemsController < ApplicationController
 
   # GET /order_items/new
   def new
-    @order_item = OrderItem.new
+    @order_item = @OrderItem.new
   end
 
   # GET /order_items/1/edit
