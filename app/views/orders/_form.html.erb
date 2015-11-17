@@ -11,10 +11,19 @@
     </div>
   <% end %>
   
+  <div class="field"> <%= f.label :transaction_id %><br> <%= f.text_field :transaction_id %></div>
+  <div class="field"> <%= f.label :paypal_email %><br><%= f.text_field :paypal_email %> </div>
+  <div class="field"> <%= f.label :shipping_name %><br><%= f.text_field :shipping_name %></div>
+  <div class="field"> <%= f.label 'Shipping Address' %>
+                                   <br> <%= f.text_field :shipping_address1 %>
+                                   <br> <%= f.text_field :shipping_address2 %>
+                                   <br> <%= f.text_field :shipping_address3 %>
+                                   <br> <%= f.text_field :shipping_address4 %>
+                                   <br> <%= f.text_field :shipping_address5 %>
+                                   </div>
   <div class="field"> <%= f.label :payment_total %><br> <%= f.text_field :payment_total %></div>
   <div class="field"> <%= f.label :payment_subtotal %><br><%= f.text_field :payment_subtotal %> </div>
   <div class="field"> <%= f.label :shipping_total %><br><%= f.text_field :shipping_total %></div>
-  <div class="field"> <%= f.label :user_id %><br> <%= f.text_field :user_id %></div>
 
   <div class="actions">
     <%= f.submit %>

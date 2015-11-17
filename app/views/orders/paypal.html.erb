@@ -1,25 +1,8 @@
 <div id="paypal-form">
-  <%= form_tag(paypal_path, method: :get) do %>
+  <%= form_for(@order) do |f|%>
   <p>
     <div id="paypal-input"><%= text_area_tag "Paypal" %></div>
-    <%= submit_tag "Process", :name => nil %>
+    <div class="actions"><%= f.submit %></div>
   </p>
   <% end %>
 </div>
-<%= form_for(@order) do |f| %>
-  <% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
-      <ul><% @order.errors.full_messages.each do |message| %><li><%= message %></li><% end %></ul>
-    </div>
-  <% end %>
-  
-  <div class="field"> <%= f.label :payment_total %><br> <%= f.text_field :payment_total %></div>
-  <div class="field"> <%= f.label :payment_subtotal %><br><%= f.text_field :payment_subtotal %> </div>
-  <div class="field"> <%= f.label :shipping_total %><br><%= f.text_field :shipping_total %></div>
-  <div class="field"> <%= f.label :user_id %><br> <%= f.text_field :user_id %></div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

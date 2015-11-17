@@ -1,5 +1,79 @@
-<h1>New Order</h1>
+<h1>NEW ORDER</h1>
 
-<%= render 'form' %>
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <% if params[:paypal_button] %>
+      <% inputString=(params["Paypal"]) %>
+      <% if inputString.include? "Transaction ID:" %>
+          <% a = inputString.index('Transaction ID:') + 15 %>
+          <% b = a + 17 %>
+          <% @transaction_id = inputString[a..b] %>
+      <% else %>
+          <% @transaction_id = '1' %>
+      <% end %>
+      <% if inputString.include? "(" %>
+          <% a = inputString.index('(') + 1 %>
+          <% b = inputString.index(')') - 1 %>
+          <% @paypal_email = inputString[a..b] %>
+      <% else %>
+          <% @paypal_email = '1' %>
+      <% end %>
+      <% if inputString.include? "You received a payment of $" %>
+          <% a = inputString.index('You received a payment of $') + 27 %>
+          <% b = inputString.index(' USD from') - 1 %>
+          <% @payment_total = inputString[a..b] %>
+      <% else %>
+          <% @payment_total = '1' %>
+      <% end %>
+      <% if inputString.include? "Shipping address" %>
+        <% a = inputString.index('Shipping address') + 18 %>
+        <% b = inputString.index('Shipping details') - 1 %>
+        <% lines = inputString[a..b].split("\n") %>
+        <% @shipping_name = lines[0] %>
+        <% @shipping_address1 = lines[1] %>
+        <% @shipping_address2 = lines[2] %>
+        <% @shipping_address3 = lines[3] %>
+        <% @shipping_address4 = lines[4] %>
+        <% @shipping_address5 = lines[5] %>
+      <% end %>
+      <% if inputString.include? "PayPal Email ID " %>
+          <% a = inputString.index('PayPal Email ID ') + 15 %>
+          <% b = a + 21 %>
+          <% @paypal_id = inputString[a..b] %>
+      <% else %>
+          <% @paypal_id = '1' %>
+      <% end %>
+  <% else %>
+    <div id="paypal-input"><%= text_area_tag "Paypal" %></div>
+    <%= submit_tag 'Paypal', :name => 'paypal_button' %>
+  <% end %>
+  
+  <div class="field"> <%= f.label :transaction_id %><br> <%= f.text_field :transaction_id, value: @transaction_id %></div>
+  <div class="field"> <%= f.label :paypal_email %><br><%= f.text_field :paypal_email, value: @paypal_email %> </div>
+  <div class="field"> <%= f.label :shipping_name %><br><%= f.text_field :shipping_name, value: @shipping_name %></div>
+  <div class="field"> <%= f.label 'Shipping Address' %>
+                          <br><%= f.text_field :shipping_address1, value: @shipping_address1 %>
+                          <br><%= f.text_field :shipping_address2, value: @shipping_address2 %>
+                          <br><%= f.text_field :shipping_address3, value: @shipping_address3 %>
+                          <br><%= f.text_field :shipping_address4, value: @shipping_address4 %>
+                          <br><%= f.text_field :shipping_address5, value: @shipping_address5 %></div>
+  <div class="field"> <%= f.label :payment_total %><br> <%= f.text_field :payment_total, value: @payment_total %></div>
+  <div class="field"> <%= f.label :payment_subtotal %><br><%= f.text_field :payment_subtotal %> </div>
+  <div class="field"> <%= f.label :shipping_total %><br><%= f.text_field :shipping_total %></div>
+  <div class="field"> <%= f.label :paypal_id %><br><%= f.text_field :paypal_id, value: @paypal_id %> </div>
+  <div class="actions"><%= f.submit %></div>
+
+<% end %>
 
 <%= link_to 'Back', orders_path %>

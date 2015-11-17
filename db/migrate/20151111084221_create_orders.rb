@@ -10,6 +10,7 @@ class CreateOrders < ActiveRecord::Migration
       t.string :shipping_address2
       t.string :shipping_address3
       t.string :shipping_address4
+      t.string :shipping_address5
       t.decimal :payment_total
       t.decimal :payment_subtotal
       t.decimal :shipping_total
