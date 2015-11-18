@@ -54,24 +54,35 @@
       <% else %>
           <% @paypal_id = '1' %>
       <% end %>
+      <% if inputString.include? "PayPal logo" %>
+          <% a = inputString.index('PayPal logo') + 12 %>
+          <% b = a + 10 %>
+          <% @date_received = inputString[a..b].to_date %>
+      <% end %>
+      <% if inputString.include? "Shipping and handling" %>
+          <% a = inputString.index('Shipping and handling') + 23 %>
+          <% b = inputString.index('Insurance') - 6 %>
+          <% @shipping_total = inputString[a..b].strip! %>
+      <% end %>
   <% else %>
     <div id="paypal-input"><%= text_area_tag "Paypal" %></div>
     <%= submit_tag 'Paypal', :name => 'paypal_button' %>
   <% end %>
   
-  <div class="field"> <%= f.label :transaction_id %><br> <%= f.text_field :transaction_id, value: @transaction_id %></div>
-  <div class="field"> <%= f.label :paypal_email %><br><%= f.text_field :paypal_email, value: @paypal_email %> </div>
-  <div class="field"> <%= f.label :shipping_name %><br><%= f.text_field :shipping_name, value: @shipping_name %></div>
+  <div class="field"> <%= f.label :transaction_id %> <%= f.text_field :transaction_id, value: @transaction_id %></div>
+  <div class="field"> <%= f.label :date_received %> <%= f.text_field :date_received, value: @date_received %></div>
+  <div class="field"> <%= f.label :paypal_email %> <%= f.text_field :paypal_email, value: @paypal_email %> </div>
+  <div class="field"> <%= f.label :shipping_name %> <%= f.text_field :shipping_name, value: @shipping_name %></div>
   <div class="field"> <%= f.label 'Shipping Address' %>
                           <br><%= f.text_field :shipping_address1, value: @shipping_address1 %>
                           <br><%= f.text_field :shipping_address2, value: @shipping_address2 %>
                           <br><%= f.text_field :shipping_address3, value: @shipping_address3 %>
                           <br><%= f.text_field :shipping_address4, value: @shipping_address4 %>
                           <br><%= f.text_field :shipping_address5, value: @shipping_address5 %></div>
-  <div class="field"> <%= f.label :payment_total %><br> <%= f.text_field :payment_total, value: @payment_total %></div>
-  <div class="field"> <%= f.label :payment_subtotal %><br><%= f.text_field :payment_subtotal %> </div>
-  <div class="field"> <%= f.label :shipping_total %><br><%= f.text_field :shipping_total %></div>
-  <div class="field"> <%= f.label :paypal_id %><br><%= f.text_field :paypal_id, value: @paypal_id %> </div>
+  <div class="field"> <%= f.label :payment_total %> <%= f.text_field :payment_total, value: @payment_total %></div>
+  <div class="field"> <%= f.label :payment_subtotal %><%= f.text_field :payment_subtotal %> </div>
+  <div class="field"> <%= f.label :shipping_total %><%= f.text_field :shipping_total, value: @shipping_total %></div>
+  <div class="field"> <%= f.label :paypal_id %><%= f.text_field :paypal_id, value: @paypal_id %> </div>
   <div class="actions"><%= f.submit %></div>
 
 <% end %>

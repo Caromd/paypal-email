@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
         format.html { render :new }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       else
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.html { redirect_to orders_path, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       end
     end
