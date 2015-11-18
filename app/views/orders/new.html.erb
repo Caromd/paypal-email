@@ -12,29 +12,24 @@
       </ul>
     </div>
   <% end %>
-  
+           <% @description = [] %>
+          <% @item_number = [] %> 
   <% if params[:paypal_button] %>
       <% inputString=(params["Paypal"]) %>
       <% if inputString.include? "Transaction ID:" %>
           <% a = inputString.index('Transaction ID:') + 15 %>
           <% b = a + 17 %>
           <% @transaction_id = inputString[a..b] %>
-      <% else %>
-          <% @transaction_id = '1' %>
       <% end %>
       <% if inputString.include? "(" %>
           <% a = inputString.index('(') + 1 %>
           <% b = inputString.index(')') - 1 %>
           <% @paypal_email = inputString[a..b] %>
-      <% else %>
-          <% @paypal_email = '1' %>
       <% end %>
       <% if inputString.include? "You received a payment of $" %>
           <% a = inputString.index('You received a payment of $') + 27 %>
           <% b = inputString.index(' USD from') - 1 %>
           <% @payment_total = inputString[a..b] %>
-      <% else %>
-          <% @payment_total = '1' %>
       <% end %>
       <% if inputString.include? "Shipping address" %>
         <% a = inputString.index('Shipping address') + 18 %>
@@ -51,8 +46,6 @@
           <% a = inputString.index('PayPal Email ID ') + 15 %>
           <% b = a + 21 %>
           <% @paypal_id = inputString[a..b] %>
-      <% else %>
-          <% @paypal_id = '1' %>
       <% end %>
       <% if inputString.include? "PayPal logo" %>
           <% a = inputString.index('PayPal logo') + 12 %>
@@ -63,6 +56,23 @@
           <% a = inputString.index('Shipping and handling') + 23 %>
           <% b = inputString.index('Insurance') - 6 %>
           <% @shipping_total = inputString[a..b].strip! %>
+      <% end %>
+      <% if inputString.include? "Amount" %>
+        <% a = inputString.index('Amount') + 8 %>
+        <% b = inputString.index('Subtotal') - 4 %>
+        <% lines = inputString[a..b].split("\n") %>
+        <% lines_count = lines.length %>
+        <% lines.each_with_index do |item,index| %>
+          <% even_index = 0 %>
+          <% odd_index = 0 %>
+          <% if index.even? %>
+             <% @description[0] = lines[0] %>
+             <% even_index += 1 %>
+          <% else %>
+            <% @item_number[odd_index] = item[6..12] %>
+            <% odd_index += 1 %>
+          <% end %>
+        <% end %>
       <% end %>
   <% else %>
     <div id="paypal-input"><%= text_area_tag "Paypal" %></div>
@@ -83,6 +93,18 @@
   <div class="field"> <%= f.label :payment_subtotal %><%= f.text_field :payment_subtotal %> </div>
   <div class="field"> <%= f.label :shipping_total %><%= f.text_field :shipping_total, value: @shipping_total %></div>
   <div class="field"> <%= f.label :paypal_id %><%= f.text_field :paypal_id, value: @paypal_id %> </div>
+
+  <% @counter = 0 %>
+  <%= fields_for :order_items do |builder| %>
+	  <fieldset>
+	    <div class="field"><%= builder.label :description %><%= builder.text_field :description, value: @description[@counter] %>  </div>
+      <div class="field"><%= builder.label :item_number %><%= builder.text_field :item_number, value: @item_number[@counter] %>  </div>
+      <div class="field"><%= builder.label :unit_price %><%= builder.text_field :unit_price %></div>
+      <div class="field"><%= builder.label :quantity %><%= builder.number_field :quantity %></div>
+	  </fieldset>
+	  <% @counter += 1 %>
+  <% end %>
+  
   <div class="actions"><%= f.submit %></div>
 
 <% end %>

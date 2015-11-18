@@ -59,6 +59,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:transaction_id, :paypal_id, :paypal_email, :date_received, :shipping_name, :shipping_address1, :shipping_address2, :shipping_address3, :shipping_address4, :shipping_address5, :payment_total, :payment_subtotal, :shipping_total, :user_id)
+      params.require(:order).permit(:transaction_id, :paypal_id, :paypal_email, :date_received, :shipping_name, :shipping_address1, :shipping_address2, :shipping_address3, :shipping_address4, :shipping_address5, :payment_total, :payment_subtotal, :shipping_total, :user_id, { order_items_attributes: [:id, :description, :item_number, :unit_price, :quantity, :order_id] } )
     end
 end
