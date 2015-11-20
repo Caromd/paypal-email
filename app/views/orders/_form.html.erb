@@ -25,12 +25,16 @@
   <div class="field"> <%= f.label :payment_subtotal %><br><%= f.text_field :payment_subtotal %> </div>
   <div class="field"> <%= f.label :shipping_total %><br><%= f.text_field :shipping_total %></div>
   
-  <%= fields_for :order_items do |g| %>
+  <h2>ITEMS</h2>
+  
+  <%= f.fields_for :order_items do |g| %>
 	  <fieldset>
-	    <div class="field"><%= g.label :description %><%= g.text_field :description %>  </div>
-      <div class="field"><%= g.label :item_number %><%= g.text_field :item_number %>  </div>
-      <div class="field"><%= g.label :unit_price %><%= g.text_field :unit_price %></div>
-      <div class="field"><%= g.label :quantity %><%= g.number_field :quantity %></div>
+	    <div class="row">
+	      <div class="field col-md-6"><%= g.label :description %><%= g.text_field :description %>  </div>
+        <div class="field col-md-3"><%= g.label 'Item' %><%= g.text_field :item_number %>  </div>
+        <div class="field col-md-1"><%= g.label 'Price' %><%= g.text_field :unit_price %> </div>
+        <div class="field col-md-1"><%= g.label 'Qty' %><%= g.number_field :quantity %> </div>
+      </div>
 	  </fieldset>
   <% end %>
 

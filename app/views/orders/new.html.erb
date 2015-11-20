@@ -12,8 +12,11 @@
       </ul>
     </div>
   <% end %>
-           <% @description = [] %>
-          <% @item_number = [] %> 
+  <% @description = [] %>
+  <% @item_number = [] %>
+  <% @unit_price = [] %>
+  <% @quantity = [] %>
+  
   <% if params[:paypal_button] %>
       <% inputString=(params["Paypal"]) %>
       <% if inputString.include? "Transaction ID:" %>
@@ -59,17 +62,26 @@
       <% end %>
       <% if inputString.include? "Amount" %>
         <% a = inputString.index('Amount') + 8 %>
-        <% b = inputString.index('Subtotal') - 4 %>
+        <% if inputString.include? "Subtotal" %>
+          <% b = inputString.index('Subtotal') - 4 %>
+        <% else %>
+          <% b = inputString.index('Shipping and handling') - 4 %>
+        <% end %>
         <% lines = inputString[a..b].split("\n") %>
         <% lines_count = lines.length %>
+        <% even_index = 0 %>
+        <% odd_index = 0 %>
         <% lines.each_with_index do |item,index| %>
-          <% even_index = 0 %>
-          <% odd_index = 0 %>
           <% if index.even? %>
-             <% @description[0] = lines[0] %>
+             <% @description[even_index] = lines[index] %>
              <% even_index += 1 %>
           <% else %>
-            <% @item_number[odd_index] = item[6..12] %>
+            <% @item_number[odd_index] = item[6..17] %>
+            <% b = item.index('USD') - 2 %>
+            <% @unit_price[odd_index] = item[20..b] %>
+            <% a = b + 6 %>
+            <% b = item[a..37].index('$') - 2 + a %>
+            <% @quantity[odd_index] = item[a..b] %>
             <% odd_index += 1 %>
           <% end %>
         <% end %>
@@ -79,28 +91,31 @@
     <%= submit_tag 'Paypal', :name => 'paypal_button' %>
   <% end %>
   
-  <div class="field"> <%= f.label :transaction_id %> <%= f.text_field :transaction_id, value: @transaction_id %></div>
-  <div class="field"> <%= f.label :date_received %> <%= f.text_field :date_received, value: @date_received %></div>
-  <div class="field"> <%= f.label :paypal_email %> <%= f.text_field :paypal_email, value: @paypal_email %> </div>
-  <div class="field"> <%= f.label :shipping_name %> <%= f.text_field :shipping_name, value: @shipping_name %></div>
-  <div class="field"> <%= f.label 'Shipping Address' %>
-                          <br><%= f.text_field :shipping_address1, value: @shipping_address1 %>
-                          <br><%= f.text_field :shipping_address2, value: @shipping_address2 %>
-                          <br><%= f.text_field :shipping_address3, value: @shipping_address3 %>
-                          <br><%= f.text_field :shipping_address4, value: @shipping_address4 %>
-                          <br><%= f.text_field :shipping_address5, value: @shipping_address5 %></div>
-  <div class="field"> <%= f.label :payment_total %> <%= f.text_field :payment_total, value: @payment_total %></div>
-  <div class="field"> <%= f.label :payment_subtotal %><%= f.text_field :payment_subtotal %> </div>
-  <div class="field"> <%= f.label :shipping_total %><%= f.text_field :shipping_total, value: @shipping_total %></div>
-  <div class="field"> <%= f.label :paypal_id %><%= f.text_field :paypal_id, value: @paypal_id %> </div>
+  <div class="field"> <%= f.label 'Transaction:' %> <%= f.text_field :transaction_id, value: @transaction_id, style: "display: inline;" %></div>
+  <div class="field"> <%= f.label 'Date received:' %> <%= f.text_field :date_received, value: @date_received, style: "display: inline;" %></div>
+  <div class="field"> <%= f.label 'Email:' %> <%= f.text_field :paypal_email, value: @paypal_email %> </div>
+  <div class="field"> <%= f.label 'Payment Total:' %> <%= f.text_field :payment_total, value: @payment_total %></div>
+  <div class="field"> <%= f.label 'Shipping Total:' %><%= f.text_field :shipping_total, value: @shipping_total %></div>
+  <div class="field"> <%= f.label 'Name:'%> <%= f.text_field :shipping_name, value: @shipping_name %></div>
+  <div class="field"> <%= f.label 'Address 1:' %><%= f.text_field :shipping_address1, value: @shipping_address1 %></div>
+  <div class="field"> <%= f.label 'Address 2:' %><%= f.text_field :shipping_address2, value: @shipping_address2 %></div>
+  <div class="field"> <%= f.label 'Address 3:' %><%= f.text_field :shipping_address3, value: @shipping_address3 %></div>
+  <div class="field"> <%= f.label 'Address 4:' %><%= f.text_field :shipping_address4, value: @shipping_address4 %></div>
+  <div class="field"> <%= f.label 'Address 5:' %><%= f.text_field :shipping_address5, value: @shipping_address5 %></div>
+  <div class="field"> <%= f.label 'Paypal ID:' %><%= f.text_field :paypal_id, value: @paypal_id %> </div>
+
+
+  <h2>ITEMS</h2>
 
   <% @counter = 0 %>
-  <%= fields_for :order_items do |builder| %>
+  <%= f.fields_for :order_items do |builder| %>
 	  <fieldset>
-	    <div class="field"><%= builder.label :description %><%= builder.text_field :description, value: @description[@counter] %>  </div>
-      <div class="field"><%= builder.label :item_number %><%= builder.text_field :item_number, value: @item_number[@counter] %>  </div>
-      <div class="field"><%= builder.label :unit_price %><%= builder.text_field :unit_price %></div>
-      <div class="field"><%= builder.label :quantity %><%= builder.number_field :quantity %></div>
+	    <div class="row">
+	      <div class="field col-md-5"><%= builder.label :description %><%= builder.text_field :description, value: @description[@counter] %>  </div>
+        <div class="field col-md-3"><%= builder.label 'Item' %><%= builder.text_field :item_number, value: @item_number[@counter] %>  </div>
+        <div class="field col-md-2"><%= builder.label 'Price' %><%= builder.text_field :unit_price, value: @unit_price[@counter] %></div>
+        <div class="field col-md-2"><%= builder.label 'Qty' %><%= builder.number_field :quantity, value: @quantity[@counter] %></div>
+      </div>
 	  </fieldset>
 	  <% @counter += 1 %>
   <% end %>

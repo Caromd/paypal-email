@@ -3,8 +3,9 @@
 <table>
   <thead>
     <tr>
+      <th class="col-md-1">Order</th>
       <th class="col-md-1">Transaction</th>
-      <th class="col-md-1">Paypal email</th>
+      <th class="col-md-1">Email</th>
       <th class="col-md-2">Date received</th>
       <th class="col-md-1"> </th>
     </tr>
@@ -13,7 +14,8 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td class="col-md-1"><%= link_to order.transaction_id, edit_order_path(order.id) %></td>
+        <td class="col-md-1"><%= link_to order.id, edit_order_path(order.id) %></td>
+        <td class="col-md-1"><%= order.transaction_id %></td>
         <td class="col-md-1"><%= order.paypal_email %></td>
         <td class="col-md-2"><%= order.date_received.strftime("%Y-%m-%d") %></td>
         <td><%= link_to 'X', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>

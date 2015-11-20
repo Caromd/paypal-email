@@ -66,14 +66,15 @@ body {
 }
 
 h1 {font-size: 2em; text-align: center;}
+h2 {font-size: 1.7em; text-align: center;}
 
 .alert {
 	text-align: center;
 }
 
 .container {
-	width: 70%;
-	max-width: 600px;
+	width: 80%;
+	max-width: 700px;
 	background: white;
 	opacity: 0.8;
 	margin: 3em auto 0 auto;
@@ -100,26 +101,6 @@ h1 {font-size: 2em; text-align: center;}
 	}
 }
 
-#index_wrapper {
-	.row {
-		width: 100%;
-		padding-left: 50px;
-		.index_item {width: 90%;float: left;
-			i {width: 100px};
-			a {width: 100px; text-align: right;}
-		}
-		.trash {width: 10%;	float: left;
-			.p {
-			    text-align: center;
-			    border-left: 1px solid;
-			    padding: 1em 0;}}
-		i {
-			transition: all .4s ease-in-out;
-			&:hover {color: $dark;}
-		}
-	}
-}
-
 .links {
 	display: block;
 	margin: 1.5em auto 0 auto;
@@ -134,17 +115,17 @@ h1 {font-size: 2em; text-align: center;}
 .forms {padding: 0 5%;}
 label {color: $dark;}
 
-#form {padding-left: 10px};
-#summary-form {padding-left: 70px};
+#form {padding-left: 5px};
 
-input[type="text"], textarea {
-	width: 90%;
-	margin: 0.5em 2% .5em 20px;
+input[type="text"] {
+	float: right;
+	width: 70%;
+	margin: 0 2% 0 20px;
 	display: inline-block;
 	outline: none;
 	background: $grey_opaque;
 	border: none;
-	height: 40px;
+	height: 30px;
 	border-radius: 4px;
 	padding-left: 1em;
 }
@@ -191,74 +172,12 @@ input[type="checkbox"] {
 	padding-left: 1em;
 }
 
-input#year {width: 20%; margin-left: 0;}
-input#month {width: 12%}
-
-#item_type_id, #price_item_id {
-	width: 90%;
-	margin: .5em 2% .5em 20px;
-	outline: none;
-	background: $grey_opaque;
-	border: none;
-	height: 40px;
-	border-radius: 4px;
-	padding-left: 1em;
-}
-
 label {
 	margin: .5em 2% .5em 20px;
 	border-radius: 4px;
 	padding-left: 1em;
 }
 
-#price_date_bought_1i {
-	width: 30%;
-	margin: .5em 2% .5em 20px;
-	outline: none;
-	background: $grey_opaque;
-	border: none;
-	height: 40px;
-	border-radius: 2px;
-	padding-left: 1em;
-}
-
-#price_date_bought_2i {
-	width: 30%;
-	margin: .5em 2% .5em 0;
-	outline: none;
-	background: $grey_opaque;
-	border: none;
-	height: 40px;
-	border-radius: 2px;
-	padding-left: 1em;
-}
-
-#price_date_bought_3i {
-	width: 20%;
-	margin: .5em 2% .5em 0;
-	outline: none;
-	background: $grey_opaque;
-	border: none;
-	height: 40px;
-	border-radius: 2px;
-	padding-left: 1em;
-}
-
-#summary_wrapper1 {
-	.summary_row {width: 100%;padding-left: 50px; padding-right: 50px;
-		.summary_item {	width: 50%;	float: left;display:inline;}
-		.summary_amount {width: 50%; text-align: right; float: right; display:inline;}
-	}
-}
-
-#summary_wrapper2 {
-	.summary_row {width: 100%;padding-left: 50px; padding-right: 50px;font-weight: bold;
-		.summary_item {	width: 50%;	float: left;background-color:$grey_opaque;border-style: solid; border-width: 0 0 1px 0; border-color: white;}
-		.summary_amount {width: 50%; text-align: right; float: right;background-color:$grey_opaque;border-style: solid; border-width: 0 0 1px 0; border-color: white;}
-	}
-}
-
-#prices_amount {text-align: right};
 
 #back {margin: 0 0 0 30px;}
 
@@ -286,5 +205,5 @@ input[type="submit"] {
 .navbar-right {width: 600px}; 
  
 textarea {
-	width: 90%;
+	width: 100%;
     height: 300px;}
