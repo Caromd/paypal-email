@@ -1,12 +1,9 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
 
   def index
     @orders = current_user.orders.all
-  end
-
-  def show
   end
 
   def new
@@ -28,17 +25,17 @@ class OrdersController < ApplicationController
         format.json { render json: @order.errors, status: :unprocessable_entity }
       else
         format.html { redirect_to orders_path, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
+        format.json { render :index, status: :created, location: @order }
       end
     end
   end
 
   def update
-    @order.order_items.build
+#    @order.order_items.build
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-        format.json { render :show, status: :ok, location: @order }
+        format.html { redirect_to orders_path, notice: 'Order was successfully updated.' }
+        format.json { render :index, status: :ok, location: @order }
       else
         format.html { render :edit }
         format.json { render json: @order.errors, status: :unprocessable_entity }

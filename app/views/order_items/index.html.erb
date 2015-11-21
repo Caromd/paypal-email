@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th class="col-md-1">Order</th>
+      <th class="col-md-1">Item</th>
       <th class="col-md-8">Description</th>
       <th class="col-md-1"></th>
     </tr>
@@ -13,8 +14,8 @@
     <% @order_items.each do |order_item| %>
       <tr>
         <td class="col-md-1"><%= order_item.order_id %></td>
+        <td class="col-md-1"><%= link_to order_item.id, edit_order_item_path(order_item.id) %></td>
         <td class="col-md-8"><%= order_item.description %></td>
-        <td><%= link_to 'E', edit_order_item_path(order_item) %></td>
         <td><%= link_to 'X', order_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

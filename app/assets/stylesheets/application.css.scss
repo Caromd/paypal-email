@@ -80,7 +80,7 @@ h2 {font-size: 1.7em; text-align: center;}
 	margin: 3em auto 0 auto;
 	border-radius: 7px;
 	-webkit-box-shadow: 0 0 4px 3px rgba(0,0,0,.3);
-	box-shadow: 0 0 4px 4px rgba(0,0,0,.03);
+	box-shadow: 0 0 4px 4px $grey_opaque;
 	padding: 1em 0;
 }
 
@@ -120,15 +120,29 @@ label {color: $dark;}
 input[type="text"] {
 	float: right;
 	width: 70%;
-	margin: 0 2% 0 20px;
+	margin: 0 2% 0 0;
 	display: inline-block;
 	outline: none;
 	background: $grey_opaque;
 	border: none;
 	height: 30px;
 	border-radius: 4px;
-	padding-left: 1em;
+	padding-left: 0;
 }
+
+input[type="number"] {
+	float: right;
+	width: 70%;
+	margin: 0 2% 0 0;
+	display: inline-block;
+	outline: none;
+	background: $grey_opaque;
+	border: none;
+	height: 30px;
+	border-radius: 4px;
+	padding-left: 0;
+}
+
 
 input[type="email"] {
 	width: 90%;
@@ -154,18 +168,6 @@ input[type="password"] {
 	padding-left: 1em;
 }
 
-input[type="number"] {
-	width: 70%;
-	margin: 0 2% 0 20px;
-	display: inline-block;
-	outline: none;
-	background: $grey_opaque;
-	border: none;
-	height: 30px;
-	border-radius: 4px;
-	padding-left: 1em;
-}
-
 input[type="checkbox"] {
 	margin: 0.5em 2% .5em 20px;
 	border-radius: 4px;
@@ -178,10 +180,7 @@ label {
 	padding-left: 1em;
 }
 
-
 #back {margin: 0 0 0 30px;}
-
-textarea {height: 200px;}
 
 input[type="submit"] {
 	background: $dark;
@@ -206,4 +205,42 @@ input[type="submit"] {
  
 textarea {
 	width: 100%;
-    height: 300px;}
+    height: 300px;
+	box-shadow: 0 0 4px 4px $grey_opaque;
+}
+
+table {
+	border: 1; 
+	width: 95%; 
+	opacity: 0.8;
+	margin: 1em auto 0 auto;
+	border-radius: 7px;
+	-webkit-box-shadow: 0 0 4px 3px rgba(0,0,0,.3);
+	box-shadow: 0 0 4px 4px $grey_opaque;
+	padding: 1em 0;
+}
+
+
+#order_order_items_attributes_0_description { width: 380px; font-size: 0.7em;}
+#order_order_items_attributes_1_description { width: 380px; font-size: 0.7em;}
+#order_order_items_attributes_2_description { width: 380px; font-size: 0.7em;}
+#order_order_items_attributes_3_description { width: 380px; font-size: 0.7em;}
+th #description {width: 380px;}
+
+#order_order_items_attributes_0_item_number { width: 120px;}
+#order_order_items_attributes_1_item_number { width: 120px;}
+#order_order_items_attributes_2_item_number { width: 120px;}
+#order_order_items_attributes_3_item_number { width: 120px;}
+th #item_number {width: 120px;}
+
+#order_order_items_attributes_0_unit_price { width: 70px;}
+#order_order_items_attributes_1_unit_price { width: 70px;}
+#order_order_items_attributes_2_unit_price { width: 70px;}
+#order_order_items_attributes_3_unit_price { width: 70px;}
+th #unit_price {width: 70px;}
+
+#order_order_items_attributes_0_quantity { width: 70px;}
+#order_order_items_attributes_1_quantity { width: 70px;}
+#order_order_items_attributes_2_quantity { width: 70px;}
+#order_order_items_attributes_3_quantity { width: 70px;}
+th #unit_quantity {width: 70px;}
