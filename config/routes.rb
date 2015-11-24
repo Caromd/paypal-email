@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
   resources :order_items
-  resources :orders
+  resources :orders do
+    collection do
+      put :label
+    end
+  end
   devise_for :users
+#    get 'label' => 'orders#label'
+  get 'summary' => 'orders#summary'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'orders#new'
+  root 'orders#index'
 #  get 'paypal' => 'orders#paypal'
 #  post 'paypal' => 'orders#paypal'
 

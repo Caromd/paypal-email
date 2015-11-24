@@ -1,0 +1,12 @@
+<%= form_tag label_orders_path, method: :get do %>
+    <%= @orders.each do |order|%>
+        <ul>
+            <li> order.shipping_name</li>
+            <li> order.shipping_address1</li>
+            <li> order.shipping_address2</li>
+            <li> order.shipping_address3</li>
+            <li> order.shipping_address4</li>
+            <li> order.shipping_address5</li>
+        </ul>
+    <% end %>
+<% end %>

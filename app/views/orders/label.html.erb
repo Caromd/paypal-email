@@ -1,0 +1,32 @@
+<%= form_tag label_orders_path, method: :get do %>
+    <% @orders.each do |order|%>
+        <table>
+            <td><ul>
+                <li> <%= order.shipping_name %></li>
+                <li> <%= order.shipping_address1 %></li>
+                <li> <%= order.shipping_address2 %></li>
+                <li> <%= order.shipping_address3 %></li>
+                <% if order.shipping_address4? %>
+                    <li> <%= order.shipping_address4 %></li>
+                <% else %>
+                    <li> . </li>
+                <% end %>
+                <% if order.shipping_address5? %>
+                    <li> <%= order.shipping_address5 %></li>
+                <% else %>
+                    <li> . </li>
+                <% end %>
+            </ul>
+            </td>
+            <td><ul>
+                <li> Rolfe Deppe </li>
+                <li> 16 Iron Street</li>
+                <li> Muizenberg</li>
+                <li> 7495 </li>
+                <li> SOUTH AFRICA</li>
+                <li> . </li>
+            </ul>
+            </td>
+        </table>
+    <% end %>
+<% end %>
