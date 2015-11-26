@@ -8,23 +8,24 @@ class OrdersController < ApplicationController
   end
   
   def summary
-    if (params[:month] != "" && params[:month] != nil)
-      month=params[:month].to_i
-      year=params[:year].to_i
-      dt = DateTime.new(year, month,1)
-      bom = dt.beginning_of_month
-      eom = dt.end_of_month
-      @orders = current_user.orders.where("date_received >= ? and date_received <= ?", bom, eom).joins(:order_items)
+#    if (params[:start] != "" && params[:start] != nil)
+bom = DateTime.new(2015,11,8)
+eom = DateTime.new(2015,11,26)
+#      bom = DateTime.new(params["start_date(1i)"].to_i, params["start_date(2i)"].to_i, params["start_date(3i)"].to_i)
+#     eom = DateTime.new(params["end_date(1i)"].to_i, params["end_date(2i)"].to_i, params["end_date(3i)"].to_i)
+      puts bom
+      @orders = current_user.orders.find(:all, :conditions => ["date_received >= ? and date_received <= ?", bom, eom])
+      # .joins(:order_items)
 #      @order_items = OrderItem.sum(:quantity).group(:description)
 #      @order_items = OrderItem.joins(Order)
 #      .select("order_items.description, SUM(order_items.quantity) as quantity")
 #      .group("order_items.description")
 #      .order("order_items.description")
-@order_items = current_user.orders.joins(OrderItem).sum('order_items.description/order_items.quantity')
+# @order_items = current_user.orders.joins(OrderItem).sum('order_items.description/order_items.quantity')
       
-    else  
-      flash[:alert] = "Please enter month and year to summarise"
-    end
+#    else  
+#      flash[:alert] = "Please enter month and year to summarise"
+#    end
   end
 
   def index

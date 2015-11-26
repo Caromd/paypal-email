@@ -270,3 +270,17 @@ input#month {width: 12%}
 		color: white;
 	}
 }
+
+#summary_wrapper1 {
+	.summary_row {width: 100%;padding-left: 50px; padding-right: 50px;
+		.summary_item {	width: 50%;	float: left;display:inline;}
+		.summary_amount {width: 50%; text-align: right; float: right; display:inline;}
+	}
+}
+
+#summary_wrapper2 {
+	.summary_row {width: 100%;padding-left: 50px; padding-right: 50px;font-weight: bold;
+		.summary_item {	width: 50%;	float: left;background-color:$grey_opaque;border-style: solid; border-width: 0 0 1px 0; border-color: white;}
+		.summary_amount {width: 50%; text-align: right; float: right;background-color:$grey_opaque;border-style: solid; border-width: 0 0 1px 0; border-color: white;}
+	}
+}
