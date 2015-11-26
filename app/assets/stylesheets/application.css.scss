@@ -251,3 +251,22 @@ input#year {width: 20%; margin-left: 0;}
 input#month {width: 12%}
 #form {padding-left: 10px};
 #summary-form {padding-left: 70px};
+
+.button {
+	text-align: center;
+	background: $dark;
+	outline: none;
+	border: none;
+	line-height: 40px;
+	border-radius: 4px;
+	width: 25%;
+	display: inline-block;
+	transition: all .4s ease-in-out;
+	cursor: pointer;
+	color: white;
+	margin: .5em 2% 1em 20px;
+	&:hover {
+		background: $dark;
+		color: white;
+	}
+}

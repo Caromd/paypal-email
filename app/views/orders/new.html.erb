@@ -106,21 +106,30 @@
 
 
   <h2>ITEMS</h2>
+  
+  <table>
+    <tr>
+      <th id='description'>Description</th>
+      <th id='item_number'>Item</th>
+      <th id='unit_price'>Price</th>
+      <th id='quantity'>Qty</th>
+    </tr>
+  
   <% @counter = 0 %>
   <% @description.each do |order_item| %>
-  <%= f.fields_for :order_items, order_item do |builder| %>
-	  <fieldset>
-	    <div class="row">
-	      <div class="field col-md-5"><%= builder.label :description %><%= builder.text_field :description, value: @description[@counter] %>  </div>
-        <div class="field col-md-3"><%= builder.label 'Item' %><%= builder.text_field :item_number, value: @item_number[@counter] %>  </div>
-        <div class="field col-md-2"><%= builder.label 'Price' %><%= builder.text_field :unit_price, value: @unit_price[@counter] %></div>
-        <div class="field col-md-2"><%= builder.label 'Qty' %><%= builder.number_field :quantity, value: @quantity[@counter] %></div>
-      </div>
-	  </fieldset>
-	  <% @counter += 1 %>
+    <%= f.fields_for :order_items, order_item do |g| %>
+	    <fieldset>
+	    <tr>
+	      <td><%= g.text_field :description, value: @description[@counter] %>  </td>
+        <td><%= g.text_field :item_number, value: @item_number[@counter] %>  </td>
+        <td><%= g.text_field :unit_price, value: @unit_price[@counter] %> </td>
+        <td><%= g.number_field :quantity, value: @quantity[@counter] %> </td>
+      </tr>
+	    </fieldset>
+	    <% @counter += 1 %>
+    <% end %>
   <% end %>
-  <% end %>
-  
+  </table>
   <div class="actions"><%= f.submit %></div>
 
 <% end %>
