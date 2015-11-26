@@ -5,6 +5,21 @@ class OrderItemsController < ApplicationController
     @order_items = OrderItem.all
   end
 
+  def summary
+#    if (params[:start] != "" && params[:start] != nil)
+bom = DateTime.new(2015,11,8)
+eom = DateTime.new(2015,11,26)
+#      bom = DateTime.new(params["start_date(1i)"].to_i, params["start_date(2i)"].to_i, params["start_date(3i)"].to_i)
+#     eom = DateTime.new(params["end_date(1i)"].to_i, params["end_date(2i)"].to_i, params["end_date(3i)"].to_i)
+      @orders = current_user.orders.where(:date_received => bom.beginning_of_day..eom.end_of_day).ids
+      @order_items = OrderItem.where(:order_id => [31,32,33,34]).group(:description).sum(:quantity)
+# TO DO:  1. GET DATE RANGE WORKING
+#         2. GET ORDER ID RANGE WORKING
+#    else  
+#      flash[:alert] = "Please enter month and year to summarise"
+#    end
+  end
+
   def new
     @order_item = OrderItem.new
   end

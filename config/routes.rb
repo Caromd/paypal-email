@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
   devise_for :users
 #    get 'label' => 'orders#label'
-  get 'summary' => 'orders#summary'
+  get 'summary' => 'order_items#summary'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
