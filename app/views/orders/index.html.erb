@@ -5,8 +5,8 @@
     <tr>
       <th class="col-md-1"> </th>
       <th class="col-md-1">Order</th>
-      <th class="col-md-1">Transaction</th>
-      <th class="col-md-1">Email</th>
+      <th class="col-md-4">Name</th>
+      <th class="col-md-3">Email</th>
       <th class="col-md-2">Date received</th>
       <th class="col-md-1"> </th>
     </tr>
@@ -17,8 +17,8 @@
       <tr>
         <td class="col-md-1"><%= check_box_tag "order_ids[]", order.id %></td>
         <td class="col-md-1"><%= link_to order.id, edit_order_path(order.id) %></td>
-        <td class="col-md-1"><%= order.transaction_id %></td>
-        <td class="col-md-1"><%= order.paypal_email %></td>
+        <td class="col-md-4"><%= order.shipping_name %></td>
+        <td class="col-md-3"><%= order.paypal_email %></td>
         <td class="col-md-2"><%= order.date_received.strftime("%Y%m%d") %></td>
         <td><%= link_to 'X', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -28,6 +28,5 @@
 
 <br>
 <%= submit_tag "Label" %>
-<br>
 <%= link_to 'New Order', new_order_path, class: 'button' %>
 <% end %>

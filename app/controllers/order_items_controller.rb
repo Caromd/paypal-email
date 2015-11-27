@@ -6,18 +6,17 @@ class OrderItemsController < ApplicationController
   end
 
   def summary
-#    if (params[:start] != "" && params[:start] != nil)
-bom = DateTime.new(2015,11,8)
-eom = DateTime.new(2015,11,26)
-#      bom = DateTime.new(params["start_date(1i)"].to_i, params["start_date(2i)"].to_i, params["start_date(3i)"].to_i)
-#     eom = DateTime.new(params["end_date(1i)"].to_i, params["end_date(2i)"].to_i, params["end_date(3i)"].to_i)
+    if params[:start_date].nil?
+      flash.now[:alert] = "Please enter start date and end date to summarise"
+    else
+      bom = DateTime::civil(params[:start_date][:year].to_i, params[:start_date][:month].to_i,params[:start_date][:day].to_i)
+      eom = DateTime::civil(params[:end_date][:year].to_i, params[:end_date][:month].to_i,params[:end_date][:day].to_i)
       @orders = current_user.orders.where(:date_received => bom.beginning_of_day..eom.end_of_day).ids
-      @order_items = OrderItem.where(:order_id => [31,32,33,34]).group(:description).sum(:quantity)
-# TO DO:  1. GET DATE RANGE WORKING
-#         2. GET ORDER ID RANGE WORKING
-#    else  
-#      flash[:alert] = "Please enter month and year to summarise"
-#    end
+      if @orders.empty?
+        flash.now[:alert] = "There are no records for the date range specified"
+      end
+      @order_items = OrderItem.where(:order_id => @orders).group(:description).sum(:quantity)
+    end
   end
 
   def new

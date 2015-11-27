@@ -1,20 +1,26 @@
-<div id="summary-form">
-  <%= form_tag(summary_path, method: :get) do %>
-  <p>From: <%= date_select "summary", "start_date" %>  To:   <%= date_select "summary", "end_date" %></p>
-  <p><%= submit_tag "Summarise", :name => nil %></p>
-  <% end %>
+<% if params[:summary_button] %>
+  <% @start_date = params[:start_date][:day] + "/" + params[:start_date][:month] + "/" + params[:start_date][:year] %>
+  <% @end_date = params[:end_date][:day] + "/" + params[:end_date][:month] + "/" + params[:end_date][:year] %>
+  <h2>SUMMARY FOR <%= @start_date %> TO <%= @end_date %></h2>
+  <table>
+    <tr>
+      <th id='description'>Description</th>
+      <th id='quantity'>Qty</th>
+    </tr>
+    <% @order_items.each do |o| %>
+      <tr>
+        <td class="col-md-11"><%= o[0] %></td>
+        <td class="col-md-1"><%= o[1] %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <div id="summary-form">
+    <%= form_tag(summary_path, method: :get) do %>
+      <p>
+      Start: <%= select_date Date::today, :prefix => 'start_date' %> End: <%= select_date Date::today, :prefix => 'end_date' %>
+      <%= submit_tag "Summarise", :name => 'summary_button' %>
+      </p>
+    <% end %>
 </div>
-
-<h1 class="page_title">SUMMARY FOR <%= params[:start_date]%> TO <% params[:end_date] %></h1>
-<table>
-  <tr>
-    <th id='description'>Description</th>
-    <th id='quantity'>Qty</th>
-  </tr>
-<% @order_items.each do |o| %>
-  <tr>
-      <td class="col-md-11"><%= o[0] %></td>
-      <td class="col-md-1"><%= o[1] %></td>
-  </tr>
 <% end %>
-</table>
