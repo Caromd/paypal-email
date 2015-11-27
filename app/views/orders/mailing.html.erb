@@ -1,0 +1,30 @@
+<h1>MAILING</h1>
+<%= form_tag label_orders_path, method: :put do %>
+<table>
+  <thead>
+    <tr>
+      <th class="col-md-4">Name</th>
+      <th class="col-md-3">Email</th>
+      <th class="col-md-3">Country</th>
+      <th class="col-md-2">Total Items</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td class="col-md-4"><%= order.shipping_name %></td>
+        <td class="col-md-3"><%= order.paypal_email %></td>
+        <% if order.shipping_address5.present? %>
+            <td class="col-md-3"><%= order.shipping_address5 %></td>
+        <% elsif order.shipping_address4.present? %>
+            <td class="col-md-3"><%= order.shipping_address4 %></td>
+        <% elsif order.shipping_address3.present? %>
+            <td class="col-md-3"><%= order.shipping_address3 %></td>
+        <% end %>
+        <td class="col-md-2"><%= order.id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

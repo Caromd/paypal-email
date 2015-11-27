@@ -7,8 +7,13 @@ class OrdersController < ApplicationController
     @orders = current_user.orders.find(params[:order_ids])
   end
   
-  def index
+  def mailing
     @orders = current_user.orders.all
+    # .includes(OrderItems.sum(:quantity))
+  end
+  
+  def index
+    @orders = current_user.orders.order("id DESC").all
   end
 
   def new
