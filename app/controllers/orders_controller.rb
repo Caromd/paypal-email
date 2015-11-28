@@ -6,12 +6,11 @@ class OrdersController < ApplicationController
   def label
     @orders = current_user.orders.find(params[:order_ids])
   end
-  
+ 
   def mailing
-    @orders = current_user.orders.all
-    # .includes(OrderItems.sum(:quantity))
+     @mailing = current_user.orders.find_by_sql("select shipping_name, paypal_email, shipping_address3, shipping_address4, shipping_address5, sum(order_items.quantity) quantity from orders join order_items on orders.id = order_items.order_id group by orders.id")
   end
-  
+ 
   def index
     @orders = current_user.orders.order("id DESC").all
   end

@@ -11,18 +11,18 @@
   </thead>
 
   <tbody>
-    <% @orders.each do |order| %>
+    <% @mailing.each do |mail| %>
       <tr>
-        <td class="col-md-4"><%= order.shipping_name %></td>
-        <td class="col-md-3"><%= order.paypal_email %></td>
-        <% if order.shipping_address5.present? %>
-            <td class="col-md-3"><%= order.shipping_address5 %></td>
-        <% elsif order.shipping_address4.present? %>
-            <td class="col-md-3"><%= order.shipping_address4 %></td>
-        <% elsif order.shipping_address3.present? %>
-            <td class="col-md-3"><%= order.shipping_address3 %></td>
+        <td class="col-md-4"><%= mail.shipping_name %></td>
+        <td class="col-md-3"><%= mail.paypal_email %></td>
+        <% if mail.shipping_address5.present? %>
+            <td class="col-md-3"><%= mail.shipping_address5 %></td>
+        <% elsif mail.shipping_address4.present? %>
+            <td class="col-md-3"><%= mail.shipping_address4 %></td>
+        <% elsif mail.shipping_address3.present? %>
+            <td class="col-md-3"><%= mail.shipping_address3 %></td>
         <% end %>
-        <td class="col-md-2"><%= order.id %></td>
+        <td class="col-md-2"><%= mail.quantity %></td>
       </tr>
     <% end %>
   </tbody>

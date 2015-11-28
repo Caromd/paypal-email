@@ -18,7 +18,7 @@ class OrderItemsController < ApplicationController
       @order_items = OrderItem.where(:order_id => @orders).group(:description).sum(:quantity)
     end
   end
-
+  
   def new
     @order_item = OrderItem.new
   end
