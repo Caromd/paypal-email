@@ -35,7 +35,11 @@
           <% @payment_total = inputString[a..b] %>
       <% end %>
       <% if inputString.include? "Shipping address" %>
-        <% a = inputString.index('Shipping address') + 18 %>
+        <% if inputString.include? "Shipping address - confirmed" %>
+          <% a = inputString.index('Shipping address') + 30 %>
+        <% else %>
+          <% a = inputString.index('Shipping address') + 18 %>
+        <% end %>
         <% b = inputString.index('Shipping details') - 1 %>
         <% lines = inputString[a..b].split("\n") %>
         <% @shipping_name = lines[0] %>
@@ -110,14 +114,14 @@
   <table>
     <tr>
       <th id='description'>Description</th>
-      <th id='item_number'>Item</th>
-      <th id='unit_price'>Price</th>
-      <th id='quantity'>Qty</th>
+      <th id='item_number'>    Item</th>
+      <th id='unit_price'>    Price</th>
+      <th id='quantity'>    Qty</th>
     </tr>
   
   <% @counter = 0 %>
   <% @description.each do |order_item| %>
-    <%= f.fields_for :order_items, order_item do |g| %>
+    <%= f.fields_for :order_items, @order.order_items.build do |g| %>
 	    <fieldset>
 	    <tr>
 	      <td><%= g.text_field :description, value: @description[@counter] %>  </td>

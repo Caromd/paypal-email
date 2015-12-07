@@ -17,7 +17,6 @@ class OrdersController < ApplicationController
 
   def new
     @order = current_user.orders.build
-    @order.order_items.build
   end
 
   def edit
@@ -26,7 +25,6 @@ class OrdersController < ApplicationController
   def create
 
     @order = current_user.orders.build(order_params)
-    @order.order_items.build
 
     respond_to do |format|
       if params[:paypal_button] || !@order.save
