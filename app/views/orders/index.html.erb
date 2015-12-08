@@ -1,4 +1,8 @@
 <h1>ORDERS</h1>
+
+<%= link_to 'New Order', new_order_path, class: 'button' %>
+<%= submit_tag "Label" %>
+
 <%= form_tag label_orders_path, method: :put do %>
 <table>
   <thead>
@@ -25,8 +29,4 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-<%= submit_tag "Label" %>
-<%= link_to 'New Order', new_order_path, class: 'button' %>
 <% end %>

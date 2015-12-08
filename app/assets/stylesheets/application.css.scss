@@ -261,7 +261,7 @@ input#month {width: 12%}
 }
 
 
-[id^="order_order_items_attributes"] { font-size: 0.8em; }
+
 /*
 [id$="description"] { min-width: 400px; }
 [id$="item_number"] { min-width: 120px; }
@@ -269,14 +269,73 @@ input#month {width: 12%}
 [id$="quantity"] { width: 30px; } */
 
 table { position: relative }
+/*
+[id$="description"] { width: 50%; }
+[id$="item_number"] { width: 20%; }
+[id$="unit_price"] { width: 10%; }
+[id$="quantity"] { width: 10%; }
 
-[id$="description"] { width: 50%; position: absolute; }
-[id$="item_number"] { width: 20%; position: relative;}
-[id$="unit_price"] { width: 10%; position: relative;}
-[id$="quantity"] { width: 10%; position: relative; }
+th {padding-left : 80px; } 
 
-th {padding-left : 80px; }
+
+[id^="order_order_items_attributes"] { 	font-size: 0.8em; }
+[id^="order_order_items_attributes"] {	margin: 0 0 0 0; }
+[id^="order_order_items_attributes"] {	padding: 0 0 0 0; }
+[id^="order_order_items_attributes"] { 	float: left; }
+[id^="order_order_items_attributes"] { 	border-radius: 0; } */
+
 th #description {width: 60%;}
 th #item_number {width: 20%;}
 th #unit_price {width: 10%;}
-th #unit_quantity {width: 10%; }
+th #quantity {width: 10%; padding-left: 40px}
+
+
+#order_order_items_attributes_0_description   { font-size: 0.8em; float: left; width: 480px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_0_item_number   { font-size: 0.8em; float: left; width: 120px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_0_unit_price    { font-size: 0.8em; float: left; width: 80px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_0_quantity      { font-size: 0.8em; float: left; width: 80px; margin: 0 0 0 0; padding: 0 0 0 0;}
+
+#order_order_items_attributes_1_description   { font-size: 0.8em; float: left; width: 480px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_1_item_number   { font-size: 0.8em; float: left; width: 120px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_1_unit_price    { font-size: 0.8em; float: left; width: 80px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_1_quantity      { font-size: 0.8em; float: left; width: 80px; margin: 0 0 0 0; padding: 0 0 0 0;}
+
+#order_order_items_attributes_2_description   { font-size: 0.8em; float: left; width: 480px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_2_item_number   { font-size: 0.8em; float: left; width: 120px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_2_unit_price    { font-size: 0.8em; float: left; width: 80px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_2_quantity      { font-size: 0.8em; float: left; width: 80px; margin: 0 0 0 0; padding: 0 0 0 0;}
+
+#order_order_items_attributes_3_description   { font-size: 0.8em; float: left; width: 480px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_3_item_number   { font-size: 0.8em; float: left; width: 120px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_3_unit_price    { font-size: 0.8em; float: left; width: 80px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_3_quantity      { font-size: 0.8em; float: left; width: 80px; margin: 0 0 0 0; padding: 0 0 0 0;}
+
+#order_order_items_attributes_4_description   { font-size: 0.8em; float: left; width: 480px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_4_item_number   { font-size: 0.8em; float: left; width: 120px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_4_unit_price    { font-size: 0.8em; float: left; width: 80px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_4_quantity      { font-size: 0.8em; float: left; width: 80px; margin: 0 0 0 0; padding: 0 0 0 0;}
+
+#order_order_items_attributes_5_description   { font-size: 0.8em; float: left; width: 480px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_5_item_number   { font-size: 0.8em; float: left; width: 120px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_5_unit_price    { font-size: 0.8em; float: left; width: 80px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_5_quantity      { font-size: 0.8em; float: left; width: 80px; margin: 0 0 0 0; padding: 0 0 0 0;}
+
+#order_order_items_attributes_6_description   { font-size: 0.8em; float: left; width: 480px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_6_item_number   { font-size: 0.8em; float: left; width: 120px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_6_unit_price    { font-size: 0.8em; float: left; width: 80px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_6_quantity      { font-size: 0.8em; float: left; width: 80px; margin: 0 0 0 0; padding: 0 0 0 0;}
+
+#order_order_items_attributes_7_description   { font-size: 0.8em; float: left; width: 480px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_7_item_number   { font-size: 0.8em; float: left; width: 120px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_7_unit_price    { font-size: 0.8em; float: left; width: 80px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_7_quantity      { font-size: 0.8em; float: left; width: 80px; margin: 0 0 0 0; padding: 0 0 0 0;}
+
+#order_order_items_attributes_8_description   { font-size: 0.8em; float: left; width: 480px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_8_item_number   { font-size: 0.8em; float: left; width: 120px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_8_unit_price    { font-size: 0.8em; float: left; width: 80px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_8_quantity      { font-size: 0.8em; float: left; width: 80px; margin: 0 0 0 0; padding: 0 0 0 0;}
+
+#order_order_items_attributes_9_description   { font-size: 0.8em; float: left; width: 480px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_9_item_number   { font-size: 0.8em; float: left; width: 120px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_9_unit_price    { font-size: 0.8em; float: left; width: 80px; margin: 0 0 0 0; padding: 0 0 0 0;}
+#order_order_items_attributes_9_quantity      { font-size: 0.8em; float: left; width: 80px; margin: 0 0 0 0; padding: 0 0 0 0;}
