@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   end
  
   def mailing
-     @mailing = current_user.orders.find_by_sql("select shipping_name, paypal_email, shipping_address3, shipping_address4, shipping_address5, sum(order_items.quantity) quantity from orders join order_items on orders.id = order_items.order_id group by orders.paypal_email")
+     @mailing = current_user.orders.find_by_sql("select shipping_name, paypal_email, shipping_address3, shipping_address4, shipping_address5, sum(order_items.quantity) quantity from orders join order_items on orders.id = order_items.order_id group by orders.paypal_email, orders.shipping_name, orders.shipping_address5, orders.shipping_address4, orders.shipping_address3")
   end
  
   def index
