@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151111084235) do
+ActiveRecord::Schema.define(version: 20151209131249) do
 
   create_table "order_items", force: :cascade do |t|
     t.string   "description"
@@ -21,30 +21,14 @@ ActiveRecord::Schema.define(version: 20151111084235) do
     t.integer  "order_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "user_id"
   end
 
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id"
+  add_index "order_items", ["user_id"], name: "index_order_items_on_user_id"
 
-  create_table "orders", force: :cascade do |t|
-    t.string   "transaction_id"
-    t.string   "paypal_id"
-    t.string   "paypal_email"
-    t.datetime "date_received"
-    t.string   "shipping_name"
-    t.string   "shipping_address1"
-    t.string   "shipping_address2"
-    t.string   "shipping_address3"
-    t.string   "shipping_address4"
-    t.string   "shipping_address5"
-    t.decimal  "payment_total"
-    t.decimal  "payment_subtotal"
-    t.decimal  "shipping_total"
-    t.integer  "user_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
+# Could not dump table "orders" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

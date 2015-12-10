@@ -128,6 +128,7 @@
         <td><%= g.text_field :item_number, value: @item_number[@counter] %>  </td>
         <td><%= g.text_field :unit_price, value: @unit_price[@counter] %> </td>
         <td><%= g.number_field :quantity, value: @quantity[@counter] %> </td>
+        <%= g.hidden_field :user_id, value: current_user.id %> 
       </tr>
 	    </fieldset>
 	    <% @counter += 1 %>

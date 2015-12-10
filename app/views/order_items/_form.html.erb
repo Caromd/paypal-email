@@ -11,8 +11,8 @@
     </div>
   <% end %>
 
-  <div class="field"><%= f.label :order_id %><%= f.text_field :order_id %></div>
-  <div class="field"><%= f.label 'Item' %><%= f.text_field :id %></div>
+  <div class="field"><%= f.label :order_id %><%= f.collection_select :order_id, current_user.orders.all, :id, :id %></div><br>
+  <div class="field"><%= f.label 'Item' %><%= f.text_field :id, disabled: true %></div>
   <div class="field"><%= f.label :description %><%= f.text_field :description %></div>
   <div class="field"><%= f.label :item_number %><%= f.text_field :item_number %></div>
   <div class="field"><%= f.label :unit_price %><%= f.text_field :unit_price %></div>

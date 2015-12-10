@@ -1,8 +1,9 @@
 class OrderItemsController < ApplicationController
   before_action :set_order_item, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!
 
   def index
-    @order_items = OrderItem.order("order_id DESC, id ASC").all
+    @order_items = current_user.order_items.order("order_id DESC, id ASC").all
   end
 
   def summary
@@ -15,23 +16,23 @@ class OrderItemsController < ApplicationController
       if @orders.empty?
         flash.now[:alert] = "There are no records for the date range specified"
       end
-      @order_items = OrderItem.where(:order_id => @orders).group(:description).sum(:quantity)
+      @order_items = current_user.order_items.where(:order_id => @orders).group(:description).sum(:quantity)
     end
   end
   
   def new
-    @order_item = OrderItem.new
+    @order_item = current_user.order_items.build
   end
 
   def edit
   end
 
   def create
-    @order_item = OrderItem.new(order_item_params)
+    @order_item = current_user.order_items.build(order_item_params)
 
     respond_to do |format|
       if @order_item.save
-        format.html { redirect_to @order_item, notice: 'Order item was successfully created.' }
+        format.html { redirect_to order_items_path, notice: 'Order item was successfully created.' }
         format.json { render :show, status: :created, location: @order_item }
       else
         format.html { render :new }
@@ -43,7 +44,7 @@ class OrderItemsController < ApplicationController
   def update
     respond_to do |format|
       if @order_item.update(order_item_params)
-        format.html { redirect_to @order_item, notice: 'Order item was successfully updated.' }
+        format.html { redirect_to order_items_path, notice: 'Order item was successfully updated.' }
         format.json { render :show, status: :ok, location: @order_item }
       else
         format.html { render :edit }
@@ -63,11 +64,11 @@ class OrderItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order_item
-      @order_item = OrderItem.find(params[:id])
+      @order_item = current_user.order_items.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_item_params
-      params.require(:order_item).permit(:description, :item_number, :unit_price, :quantity, :order_id)
+      params.require(:order_item).permit(:description, :item_number, :unit_price, :quantity, :order_id, :user_id)
     end
 end

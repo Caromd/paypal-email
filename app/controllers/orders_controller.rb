@@ -8,7 +8,12 @@ class OrdersController < ApplicationController
   end
  
   def mailing
-     @mailing = current_user.orders.find_by_sql("select shipping_name, paypal_email, shipping_address3, shipping_address4, shipping_address5, sum(order_items.quantity) quantity from orders join order_items on orders.id = order_items.order_id group by orders.paypal_email, orders.shipping_name, orders.shipping_address5, orders.shipping_address4, orders.shipping_address3")
+     @mailing = current_user.orders.find_by_sql(
+       ["select shipping_name, paypal_email, shipping_address3, shipping_address4, shipping_address5, sum(order_items.quantity) quantity 
+       from orders 
+       join order_items on orders.id = order_items.order_id 
+       where order_items.user_id = ? 
+       group by orders.paypal_email, orders.shipping_name, orders.shipping_address5, orders.shipping_address4, orders.shipping_address3",current_user.id])
   end
  
   def index
@@ -38,9 +43,9 @@ class OrdersController < ApplicationController
   end
 
   def update
-#    @order.order_items.build
+
     respond_to do |format|
-      if @order.update(order_params)
+      if current_user.order.update(order_params)
         format.html { redirect_to orders_path, notice: 'Order was successfully updated.' }
         format.json { render :index, status: :ok, location: @order }
       else
@@ -61,7 +66,7 @@ class OrdersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
-      @order = Order.find(params[:id])
+      @order = current_user.orders.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -81,6 +86,6 @@ class OrdersController < ApplicationController
         :payment_subtotal, 
         :shipping_total, 
         :user_id, 
-        order_items_attributes: [:id, :description, :item_number, :unit_price, :quantity, :order_id] )
+        order_items_attributes: [:id, :description, :item_number, :unit_price, :quantity, :order_id, :user_id] )
     end
 end
